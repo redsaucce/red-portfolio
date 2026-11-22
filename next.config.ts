@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  images: {
+    // Development only: stop caching optimized images so changes show up right away.
+    // Remove this block (or raise the value) before deploying.
+    minimumCacheTTL: 0,
+  },
 };
 
 export default nextConfig;
