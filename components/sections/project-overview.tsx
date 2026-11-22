@@ -56,7 +56,7 @@ export default function ProjectOverview() {
   const featured = projects.filter((project) => project.featured).slice(0, 3);
 
   return (
-    <section id="projects" className="scroll-mt-20 border-t">
+    <section id="projects">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:py-24">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="flex flex-col gap-3">

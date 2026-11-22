@@ -148,3 +148,8 @@
     }
   }
 }
+
+/* ScrollArea thumb: use the foreground color so it is visible in light and dark mode */
+[data-slot="scroll-area-thumb"] {
+  background-color: var(--foreground) !important;
+}

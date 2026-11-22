@@ -48,11 +48,14 @@ export function LinkedinIcon(props: SVGProps<SVGSVGElement>) {
 }
 
 // Instagram: rounded square with the brand gradient and a white camera outline.
-export function InstagramIcon(props: SVGProps<SVGSVGElement>) {
+export function InstagramIcon({
+  gradientId = "instagram-gradient",
+  ...props
+}: SVGProps<SVGSVGElement> & { gradientId?: string }) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" {...props}>
       <defs>
-        <linearGradient id="instagram-gradient" x1="0" y1="24" x2="24" y2="0" gradientUnits="userSpaceOnUse">
+        <linearGradient id={gradientId} x1="0" y1="24" x2="24" y2="0" gradientUnits="userSpaceOnUse">
           <stop offset="0" stopColor="#FEDA75" />
           <stop offset="0.25" stopColor="#FA7E1E" />
           <stop offset="0.5" stopColor="#D62976" />
@@ -60,7 +63,7 @@ export function InstagramIcon(props: SVGProps<SVGSVGElement>) {
           <stop offset="1" stopColor="#4F5BD5" />
         </linearGradient>
       </defs>
-      <rect width="24" height="24" rx="5" fill="url(#instagram-gradient)" />
+      <rect width="24" height="24" rx="5" fill={`url(#${gradientId}) #E1306C`} />
       <rect x="5" y="5" width="14" height="14" rx="4" fill="none" stroke="#FFFFFF" strokeWidth="2" />
       <circle cx="12" cy="12" r="3.2" fill="none" stroke="#FFFFFF" strokeWidth="2" />
       <circle cx="16.2" cy="7.8" r="1.1" fill="#FFFFFF" />

@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -28,16 +29,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
       className={`${dmSans.variable} ${jakarta.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="flex h-dvh flex-col overflow-hidden">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
+          {/* Navbar stays fixed at the top; the page content scrolls inside ScrollArea */}
           <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <ScrollArea className="min-h-0 flex-1">
+            <main>{children}</main>
+            <Footer />
+          </ScrollArea>
         </ThemeProvider>
       </body>
     </html>

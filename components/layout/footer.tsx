@@ -1,6 +1,10 @@
 import { Separator } from "@/components/ui/separator";
 import { site } from "@/data/site";
 import { FacebookIcon, GithubIcon, InstagramIcon, LinkedinIcon } from "@/components/shared/icons";
+import { Mail, MapPin, Phone } from "lucide-react";
+
+const linkClass =
+  "inline-flex items-center gap-2 text-base text-muted-foreground transition-colors hover:text-foreground";
 
 export default async function Footer() {
   "use cache";
@@ -11,75 +15,76 @@ export default async function Footer() {
     <footer className="mt-auto border-t">
       <div className="mx-auto max-w-7xl px-6 py-10">
         <div className="grid gap-8 md:grid-cols-3">
+          {/* Name and tagline */}
           <div>
             <p className="font-heading text-lg font-bold">{site.name}</p>
-            <p className="mt-2 max-w-xs text-sm text-muted-foreground">
+            <p className="mt-2 max-w-xs text-base text-muted-foreground">
               {site.tagline}
             </p>
           </div>
 
-          <div className="flex flex-col gap-1 text-sm">
-            <p className="font-medium">Reach me</p>
-            <a
-              href={`mailto:${site.email}`}
-              className="text-muted-foreground transition-colors hover:text-foreground"
-            >
+          {/* Reach me: icons inline with each contact detail */}
+          <div className="flex flex-col gap-2 text-base">
+            <p className="font-heading font-semibold">Reach me</p>
+            <a href={`mailto:${site.email}`} className={linkClass}>
+              <Mail className="size-4 shrink-0" aria-hidden="true" />
               {site.email}
             </a>
-            <a
-              href={`tel:${site.phone.replace(/\s/g, "")}`}
-              className="text-muted-foreground transition-colors hover:text-foreground"
-            >
+            <a href={`tel:${site.phone.replace(/\s/g, "")}`} className={linkClass}>
+              <Phone className="size-4 shrink-0" aria-hidden="true" />
               {site.phone}
             </a>
-            <p className="text-muted-foreground">{site.location}</p>
+            <p className="inline-flex items-center gap-2 text-muted-foreground">
+              <MapPin className="size-4 shrink-0" aria-hidden="true" />
+              {site.location}
+            </p>
           </div>
 
-          <div className="flex flex-col gap-1 text-sm">
-            <p className="font-medium">Follow me</p>
+          {/* Follow me: brand icons, slightly larger */}
+          <div className="flex flex-col gap-2 text-base">
+            <p className="font-heading font-semibold">Follow me</p>
             <a
               href={site.socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+              className={linkClass}
             >
-              <GithubIcon className="size-4 shrink-0" />
-              GitHub
+              <GithubIcon className="size-5 shrink-0" />
+              redsaucce
             </a>
             <a
               href={site.socials.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+              className={linkClass}
             >
-              <LinkedinIcon className="size-4 shrink-0" />
-              LinkedIn
+              <LinkedinIcon className="size-5 shrink-0" />
+              Drew Benett Pereda
             </a>
             <a
               href={site.socials.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+              className={linkClass}
             >
-              <InstagramIcon className="size-4 shrink-0" />
-              Instagram
+              <InstagramIcon gradientId="footer-instagram-gradient" className="size-5 shrink-0" />
+              Red Pereda
             </a>
-
             <a
               href={site.socials.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+              className={linkClass}
             >
-              <FacebookIcon className="size-4 shrink-0" />
-              Facebook
+              <FacebookIcon className="size-5 shrink-0" />
+              Red Pereda
             </a>
           </div>
         </div>
 
         <Separator className="my-8" />
 
-        <p className="text-center text-sm text-muted-foreground">
+        <p className="text-center text-base text-muted-foreground">
           © {year} {site.name} All rights reserved.
         </p>
       </div>

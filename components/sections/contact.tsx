@@ -228,7 +228,7 @@ function ContactForm() {
 
 export default function Contact() {
   return (
-    <section id="contact" className="scroll-mt-20 border-t">
+    <section id="contact">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:py-24">
         {/* Header: full width */}
         <div className="flex flex-col items-center gap-3 text-center">
@@ -288,7 +288,7 @@ export default function Contact() {
                   className="flex items-center gap-3 text-muted-foreground hover:text-foreground"
                 >
                   <GithubIcon className="size-5 shrink-0" />
-                  <span>View profile</span>
+                  <span>redsaucce</span>
                 </a>
 
                 <a
@@ -299,7 +299,7 @@ export default function Contact() {
                   className="flex items-center gap-3 text-muted-foreground hover:text-foreground"
                 >
                   <LinkedinIcon className="size-5 shrink-0" />
-                  <span>View profile</span>
+                  <span>Drew Benett Pereda</span>
                 </a>
 
                 <a
@@ -309,8 +309,8 @@ export default function Contact() {
                   aria-label="Instagram profile"
                   className="flex items-center gap-3 text-muted-foreground hover:text-foreground"
                 >
-                  <InstagramIcon className="size-5 shrink-0" />
-                  <span>View profile</span>
+                  <InstagramIcon gradientId="contact-instagram-gradient" className="size-5 shrink-0" />
+                  <span>Red Pereda</span>
                 </a>
 
                 <a
@@ -321,7 +321,7 @@ export default function Contact() {
                   className="flex items-center gap-3 text-muted-foreground hover:text-foreground"
                 >
                   <FacebookIcon className="size-5 shrink-0" />
-                  <span>View profile</span>
+                  <span>Red Pereda</span>
                 </a>
               </CardContent>
             </Card>
