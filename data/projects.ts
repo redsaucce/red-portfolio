@@ -27,16 +27,15 @@ export const projects: Project[] = [
     liveUrl: "https://www.mindblow.online/",
   },
   {
-    slug: "web-portfolio",
-    title: "Web Portfolio",
-    summary: "My personal portfolio website, built with Next.js, Tailwind CSS, and shadcn/ui.",
+    slug: "kelly-cakes",
+    title: "Kelly Cakes",
+    summary: "A freelance website built for a client.",
     description:
-      "This website is my personal portfolio, built with Next.js, Tailwind CSS, and shadcn/ui. It features responsive layouts for mobile and desktop, a dark mode toggle, project pages, and a contact form with validation.",
+      "Kelly Cakes is a freelance website I built for a client. It presents the bakery's products and gives visitors a clear way to get in touch.",
     stack: ["Next.js", "Tailwind CSS", "shadcn/ui"],
     featured: true,
-    image: "/web-portfolio.png",
-    repoUrl: "https://github.com/your-username/red-portfolio",
-    liveUrl: "https://your-demo-link.example.com",
+    image: "/kelly-cakes.png",
+    liveUrl: "https://kelly-cakes.vercel.app",
   },
   {
     slug: "nvsu-brims",
