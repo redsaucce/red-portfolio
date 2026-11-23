@@ -10,7 +10,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Textarea } from "@/components/ui/textarea";
 import { site } from "@/data/site";
 import { FacebookIcon, GithubIcon, InstagramIcon, LinkedinIcon } from "@/components/shared/icons";
-import { Briefcase, ChevronsUpDown, Check, Clock, Mail, MapPin, Phone } from "lucide-react";
+import { ChevronsUpDown, Check, Clock, Mail, MapPin, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const subjects = [
@@ -90,10 +90,10 @@ function ContactForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="flex flex-col gap-5 rounded-xl border p-6 md:p-8"
+      className="flex flex-col gap-5 rounded-xl border p-4 sm:p-6 md:p-8"
     >
       <div className="flex flex-col gap-1">
-        <h3 className="font-heading text-xl font-semibold">Send a message</h3>
+        <h3 className="font-heading text-lg font-semibold sm:text-xl">Send a message</h3>
         <p className="text-sm text-muted-foreground">
           Fill in the form and I will get back to you.
         </p>
@@ -215,7 +215,7 @@ function ContactForm() {
       </div>
 
       <div className="flex items-center gap-4">
-        <Button type="submit" size="lg" className="px-8">
+        <Button type="submit" size="lg" className="w-full px-8 sm:w-auto">
           Send message
         </Button>
         {submitted && (
@@ -229,26 +229,25 @@ function ContactForm() {
 export default function Contact() {
   return (
     <section id="contact">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:py-24">
+      <div className="mx-auto max-w-7xl px-6 py-8 md:py-10 lg:py-12">
         {/* Header: full width */}
-        <div className="flex flex-col items-center gap-3 text-center">
-          <h2 className="font-heading text-3xl font-bold tracking-tight md:text-4xl">
+        <div className="flex flex-col gap-3">
+          <h2 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
             Get in touch
           </h2>
-          <p className="max-w-2xl text-lg text-muted-foreground">
-            Have a project in mind or want to collaborate? Send me a message, and I
-            will respond as soon as possible.
+          <p className="max-w-2xl text-base text-muted-foreground md:text-lg">
+            Have a project in mind? Send me a message and I will reply soon.
           </p>
         </div>
 
         {/* Row: info card on the left, form on the right */}
         <div className="mt-12 grid gap-12 lg:grid-cols-2">
-          <div className="flex flex-col gap-4">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-base">Reach me</CardTitle>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+            <Card className="py-4 sm:py-6">
+              <CardHeader className="px-4 sm:px-6">
+                <CardTitle className="text-lg font-semibold sm:text-xl">Reach me</CardTitle>
               </CardHeader>
-              <CardContent className="flex flex-col gap-4 text-sm">
+              <CardContent className="flex flex-col gap-4 px-4 text-sm sm:px-6">
                 <div className="flex items-center gap-3">
                   <Mail className="size-5 shrink-0 text-muted-foreground" aria-label="Email" />
                   <a href={`mailto:${site.email}`} className="text-muted-foreground hover:text-foreground">
@@ -275,11 +274,11 @@ export default function Contact() {
               </CardContent>
             </Card>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-base">Follow me</CardTitle>
+            <Card className="py-4 sm:py-6">
+              <CardHeader className="px-4 sm:px-6">
+                <CardTitle className="text-lg font-semibold sm:text-xl">Follow me</CardTitle>
               </CardHeader>
-              <CardContent className="flex flex-col gap-4 text-sm">
+              <CardContent className="flex flex-col gap-4 px-4 text-sm sm:px-6">
                 <a
                   href={site.socials.github}
                   target="_blank"
@@ -326,11 +325,6 @@ export default function Contact() {
               </CardContent>
             </Card>
 
-            {/* Availability banner, below Follow me */}
-            <Card className="flex-row items-center gap-4 bg-muted/50 px-6 py-5">
-              <Briefcase className="size-6 shrink-0" aria-hidden="true" />
-              <p className="text-base font-medium">{site.availability}</p>
-            </Card>
           </div>
 
           <ContactForm />

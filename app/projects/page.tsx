@@ -17,10 +17,10 @@ function ProjectRow({ project, reverse }: { project: Project; reverse: boolean }
       </div>
 
       <div className={`flex flex-col gap-5 ${reverse ? "lg:order-1" : ""}`}>
-        <h2 className="font-heading text-2xl font-bold tracking-tight md:text-3xl">
+        <h2 className="font-heading text-xl font-bold tracking-tight sm:text-2xl md:text-3xl">
           {project.title}
         </h2>
-        <p className="text-lg text-muted-foreground">{project.description}</p>
+        <p className="text-base text-muted-foreground md:text-lg">{project.description}</p>
 
         <div className="flex flex-wrap gap-2">
           {project.stack.map((tech) => (
@@ -50,10 +50,10 @@ export default function ProjectsPage() {
   return (
     <section className="mx-auto max-w-7xl px-6 py-8 md:py-10 lg:py-12">
         <div className="flex flex-col gap-3">
-          <h1 className="font-heading text-3xl font-bold tracking-tight md:text-4xl">
+          <h1 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
             Projects
           </h1>
-          <p className="max-w-2xl text-lg text-muted-foreground">
+          <p className="max-w-2xl text-base text-muted-foreground md:text-lg">
             Selected projects I have designed and built.
           </p>
         </div>

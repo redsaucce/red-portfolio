@@ -10,7 +10,7 @@ export const skillAreas: SkillArea[] = [
     title: "Web Development",
     description:
       "Building responsive websites and progressive web apps that load quickly and work on any device.",
-    tags: ["Next.js", "React", "Tailwind CSS", "REST APIs", "Performance Optimization"],
+    tags: ["Next.js", "React", "REST APIs", "Performance Optimization"],
   },
   {
     title: "Database Design",
@@ -31,3 +31,8 @@ export const skillAreas: SkillArea[] = [
     tags: ["Wireframing", "Responsive Design", "Accessibility", "Design Systems"],
   },
 ];
+
+// Every unique tag from the skill cards. The hero marquee uses this list.
+export const marqueeSkills = Array.from(
+  new Set(skillAreas.flatMap((area) => area.tags)),
+);

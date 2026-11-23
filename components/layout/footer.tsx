@@ -38,6 +38,7 @@ export default async function Footer() {
               <MapPin className="size-4 shrink-0" aria-hidden="true" />
               {site.location}
             </p>
+            <p className="text-muted-foreground">{site.availability}</p>
           </div>
 
           {/* Follow me: brand icons, slightly larger */}
