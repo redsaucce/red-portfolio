@@ -93,7 +93,7 @@ function ContactForm() {
       className="flex flex-col gap-5 rounded-xl border p-4 sm:p-6 md:p-8"
     >
       <div className="flex flex-col gap-1">
-        <h3 className="font-heading text-lg font-semibold sm:text-xl">Send a message</h3>
+        <h3 className="font-heading text-lg font-semibold tracking-tight sm:text-xl">Send a message</h3>
         <p className="text-sm text-muted-foreground">
           Fill in the form and I will get back to you.
         </p>
@@ -245,7 +245,7 @@ export default function Contact() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
             <Card className="py-4 sm:py-6">
               <CardHeader className="px-4 sm:px-6">
-                <CardTitle className="text-lg font-semibold sm:text-xl">Reach me</CardTitle>
+                <CardTitle className="font-heading text-lg font-semibold tracking-tight sm:text-xl">Reach me</CardTitle>
               </CardHeader>
               <CardContent className="flex flex-col gap-4 px-4 text-sm sm:px-6">
                 <div className="flex items-center gap-3">
@@ -276,7 +276,7 @@ export default function Contact() {
 
             <Card className="py-4 sm:py-6">
               <CardHeader className="px-4 sm:px-6">
-                <CardTitle className="text-lg font-semibold sm:text-xl">Follow me</CardTitle>
+                <CardTitle className="font-heading text-lg font-semibold tracking-tight sm:text-xl">Follow me</CardTitle>
               </CardHeader>
               <CardContent className="flex flex-col gap-4 px-4 text-sm sm:px-6">
                 <a

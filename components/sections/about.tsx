@@ -29,8 +29,8 @@ export default function About() {
           <ImageFallback src="/profile.jpg" alt="Red Pereda, IT professional and web developer" ratio={4 / 3} className="border" />
 
           <div className="flex flex-col gap-4">
-            <h3 className="font-heading text-xl font-semibold tracking-tight sm:text-2xl">Bio</h3>
-            <div className="flex flex-col gap-4 text-base text-muted-foreground md:text-lg">
+            <h3 className="font-heading text-xl font-semibold tracking-tight sm:text-2xl">Background</h3>
+            <div className="flex flex-col gap-4 text-base text-muted-foreground">
             <p>
               I am an IT professional focusing on web development. I design and
               build full-stack applications, covering database design, user
@@ -46,6 +46,19 @@ export default function About() {
               opportunities to contribute to teams that value clean code, thoughtful
               design, and reliable delivery.
             </p>
+            </div>
+
+            <div className="flex flex-col gap-2 text-base">
+              <p>
+                <span className="font-medium text-foreground">Pronouns:</span>{" "}
+                <span className="text-muted-foreground">him/he</span>
+              </p>
+              <p>
+                <span className="font-medium text-foreground">Education:</span>{" "}
+                <span className="text-muted-foreground">
+                  BS Information Technology, Web and Mobile Application Development
+                </span>
+              </p>
             </div>
           </div>
         </div>
@@ -70,7 +83,7 @@ export default function About() {
 
                 {/* Body: description, the supporting level */}
                 <CardContent className="px-4 pt-3 sm:px-6">
-                  <CardDescription className="text-sm leading-relaxed sm:text-base">
+                  <CardDescription className="text-sm leading-relaxed">
                     {area.description}
                   </CardDescription>
                 </CardContent>

@@ -20,7 +20,7 @@ function ProjectRow({ project, reverse }: { project: Project; reverse: boolean }
         <h2 className="font-heading text-xl font-bold tracking-tight sm:text-2xl md:text-3xl">
           {project.title}
         </h2>
-        <p className="text-base text-muted-foreground md:text-lg">{project.description}</p>
+        <p className="text-base text-muted-foreground">{project.description}</p>
 
         <div className="flex flex-wrap gap-2">
           {project.stack.map((tech) => (

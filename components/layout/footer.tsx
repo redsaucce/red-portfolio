@@ -1,7 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import { site } from "@/data/site";
 import { FacebookIcon, GithubIcon, InstagramIcon, LinkedinIcon } from "@/components/shared/icons";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Briefcase, Mail, MapPin, Phone } from "lucide-react";
 
 const linkClass =
   "inline-flex items-center gap-2 text-base text-muted-foreground transition-colors hover:text-foreground";
@@ -17,7 +17,7 @@ export default async function Footer() {
         <div className="grid gap-8 md:grid-cols-3">
           {/* Name and tagline */}
           <div>
-            <p className="font-heading text-lg font-bold">{site.name}</p>
+            <p className="font-heading text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">{site.name}</p>
             <p className="mt-2 max-w-xs text-base text-muted-foreground">
               {site.tagline}
             </p>
@@ -25,7 +25,7 @@ export default async function Footer() {
 
           {/* Reach me: icons inline with each contact detail */}
           <div className="flex flex-col gap-2 text-base">
-            <p className="font-heading font-semibold">Reach me</p>
+            <p className="font-heading text-lg font-semibold tracking-tight sm:text-xl">Reach me</p>
             <a href={`mailto:${site.email}`} className={linkClass}>
               <Mail className="size-4 shrink-0" aria-hidden="true" />
               {site.email}
@@ -38,12 +38,15 @@ export default async function Footer() {
               <MapPin className="size-4 shrink-0" aria-hidden="true" />
               {site.location}
             </p>
-            <p className="text-muted-foreground">{site.availability}</p>
+            <p className="inline-flex items-center gap-2 text-muted-foreground">
+              <Briefcase className="size-4 shrink-0" aria-hidden="true" />
+              {site.availability}
+            </p>
           </div>
 
           {/* Follow me: brand icons, slightly larger */}
           <div className="flex flex-col gap-2 text-base">
-            <p className="font-heading font-semibold">Follow me</p>
+            <p className="font-heading text-lg font-semibold tracking-tight sm:text-xl">Follow me</p>
             <a
               href={site.socials.github}
               target="_blank"

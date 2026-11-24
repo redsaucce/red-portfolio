@@ -23,7 +23,7 @@ function ProjectCard({ project }: { project: Project }) {
       />
 
       <CardHeader className="flex-none gap-2 px-4 pt-4 sm:px-6 sm:pt-5">
-        <CardTitle className="font-heading text-xl">{project.title}</CardTitle>
+        <CardTitle className="font-heading text-lg font-semibold tracking-tight sm:text-xl">{project.title}</CardTitle>
         {/* Fixed two-line height so every card's badges start at the same line */}
         <CardDescription className="line-clamp-2 min-h-10">
           {project.summary}
