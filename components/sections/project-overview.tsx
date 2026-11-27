@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -44,6 +45,7 @@ function ProjectCard({ project }: { project: Project }) {
           <Button asChild size="sm">
             <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
               Live demo
+              <ExternalLink className="size-4" aria-hidden="true" />
             </a>
           </Button>
         )}
@@ -71,7 +73,10 @@ export default function ProjectOverview() {
           {/* Large screens: button aligned with the header */}
           <div className="hidden lg:block">
             <Button asChild variant="outline" size="lg" className="rounded-md px-6 py-5">
-              <Link href="/projects">View all projects</Link>
+              <Link href="/projects">
+                View all projects
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
             </Button>
           </div>
         </div>
@@ -85,7 +90,10 @@ export default function ProjectOverview() {
         {/* Mobile and tablet: button below the third project */}
         <div className="mt-12 flex justify-center lg:hidden">
           <Button asChild variant="outline" size="lg" className="rounded-md px-6 py-5">
-            <Link href="/projects">View all projects</Link>
+            <Link href="/projects">
+                View all projects
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
           </Button>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import ImageFallback from "@/components/shared/image-fallback";
+import { ExternalLink } from "lucide-react";
 import { projects, type Project } from "@/data/projects";
 
 function ProjectRow({ project, reverse }: { project: Project; reverse: boolean }) {
@@ -36,6 +37,7 @@ function ProjectRow({ project, reverse }: { project: Project; reverse: boolean }
               <Button asChild size="lg">
                 <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                   Live demo
+                  <ExternalLink className="size-4" aria-hidden="true" />
                 </a>
               </Button>
             )}

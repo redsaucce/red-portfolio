@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { DM_Sans, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/layout/theme-provider";
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     "Web Portfolio of Red Pereda, a BSIT student and developer building web and mobile apps.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
@@ -38,7 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           {/* Navbar stays fixed at the top; the page content scrolls inside ScrollArea */}
           <Navbar />
-          <ScrollArea className="min-h-0 flex-1">
+          <ScrollArea type="scroll" className="min-h-0 flex-1">
             <main>{children}</main>
             <Footer />
           </ScrollArea>

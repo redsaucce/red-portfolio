@@ -43,7 +43,7 @@ export const projects: Project[] = [
     summary: "Borrowing and returning system for items & equipment at NVSU.",
     description:
       "NVSU-BRIMS is the Borrowing and Returning Items & Equipment Management System of Nueva Vizcaya State University. It lets students, staff, and registered student organizations browse, request, and track the loan of sports and arts equipment from the University Sports & Development Office (USDO) and the University Culture and the Arts Office (UCAO). It also sends email notifications to keep borrowers informed.",
-    stack: ["Next.js", "PostgreSQL", "Email integration"],
+    stack: ["Next.js", "PostgreSQL", "Email notification"],
     featured: true,
     image: "/nvsu-brims.png",
     repoUrl: "https://github.com/your-username/nvsu-brims",

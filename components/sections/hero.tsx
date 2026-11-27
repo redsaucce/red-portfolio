@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FolderOpen, Mail } from "lucide-react";
 import { Fragment } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -24,7 +25,7 @@ function SkillsMarquee() {
 
   return (
     <div className="group w-full min-w-0 overflow-hidden">
-      <div className="flex w-max animate-marquee group-hover:paused motion-reduce:animate-none">
+      <div className="flex w-max animate-marquee motion-reduce:animate-none">
         {row}
         {row}
       </div>
@@ -76,10 +77,16 @@ export default function Hero() {
 
           <div className="flex flex-wrap gap-3">
             <Button asChild size="lg" className="rounded-md px-6 py-4 text-base sm:px-8 sm:py-6 sm:text-lg">
-              <Link href="/projects">View Projects</Link>
+              <Link href="/projects">
+                View Projects
+                <FolderOpen className="size-4" aria-hidden="true" />
+              </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="rounded-md px-6 py-4 text-base sm:px-8 sm:py-6 sm:text-lg">
-              <Link href="/#contact">Contact</Link>
+              <Link href="/#contact">
+                <Mail className="size-4" aria-hidden="true" />
+                Contact
+              </Link>
             </Button>
           </div>
         </div>

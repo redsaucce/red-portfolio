@@ -97,7 +97,7 @@
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
+  --border: oklch(1 0 0 / 22%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
   --chart-1: oklch(0.87 0 0);
@@ -150,5 +150,14 @@
 
 /* ScrollArea thumb: use the foreground color so it is visible in light and dark mode */
 [data-slot="scroll-area-thumb"] {
-  background-color: var(--foreground) !important;
+  background-color: #000000 !important;
+}
+
+.dark [data-slot="scroll-area-thumb"] {
+  background-color: #ffffff !important;
+}
+
+/* ScrollArea vertical scrollbar: give it room for the thumb (10px) */
+[data-slot="scroll-area-scrollbar"][data-orientation="vertical"] {
+  width: 0.625rem !important;
 }

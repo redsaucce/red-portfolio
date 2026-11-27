@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { Menu, Moon, Sun } from "lucide-react";
@@ -20,6 +21,36 @@ const navLinks = [
   { label: "About", href: "/#about" },
   { label: "Contact", href: "/#contact" },
 ];
+
+// Which link is active: the Projects page, or a section on the home page.
+function useActiveLink(): string {
+  const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (pathname !== "/") return;
+    const sections = ["about", "contact"]
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (sections.length === 0) return;
+
+    // The section that covers the middle of the screen is the active one.
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.find((entry) => entry.isIntersecting);
+        setActiveSection(visible ? visible.target.id : null);
+      },
+      { rootMargin: "-40% 0px -55% 0px" },
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [pathname]);
+
+  if (pathname.startsWith("/projects")) return "/projects";
+  if (pathname === "/" && activeSection) return `/#${activeSection}`;
+  if (pathname === "/") return "/";
+  return "";
+}
 
 function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -45,11 +76,12 @@ function ThemeToggle() {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const activeHref = useActiveLink();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <Link href="/" className="font-heading text-lg font-bold tracking-tight sm:text-xl">
+        <Link href="/" className="font-heading text-lg font-bold tracking-tight hover:underline underline-offset-4 focus-visible:underline focus-visible:outline-none sm:text-xl">
           {site.name}
         </Link>
 
@@ -59,7 +91,12 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              aria-current={link.href === activeHref ? "page" : undefined}
+              className={
+                link.href === activeHref
+                  ? "text-sm font-medium text-foreground hover:underline underline-offset-4 focus-visible:underline focus-visible:outline-none"
+                  : "text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:underline underline-offset-4 focus-visible:text-foreground focus-visible:underline focus-visible:outline-none"
+              }
             >
               {link.label}
             </Link>
@@ -86,7 +123,12 @@ export default function Navbar() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="rounded-md px-3 py-2 text-base font-normal transition-colors hover:bg-accent"
+                    aria-current={link.href === activeHref ? "page" : undefined}
+                    className={
+                      link.href === activeHref
+                        ? "rounded-md bg-accent px-3 py-2 text-base font-normal text-accent-foreground focus-visible:outline-none"
+                        : "rounded-md px-3 py-2 text-base font-normal transition-colors hover:bg-accent focus-visible:bg-accent focus-visible:outline-none"
+                    }
                   >
                     {link.label}
                   </Link>

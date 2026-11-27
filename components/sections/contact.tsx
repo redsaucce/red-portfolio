@@ -10,8 +10,9 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Textarea } from "@/components/ui/textarea";
 import { site } from "@/data/site";
 import { FacebookIcon, GithubIcon, InstagramIcon, LinkedinIcon } from "@/components/shared/icons";
-import { ChevronsUpDown, Check, Clock, Mail, MapPin, Phone } from "lucide-react";
+import { ChevronsUpDown, Check, Clock, Mail, MapPin, Phone, Send } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { sendContactMessage } from "@/lib/contact";
 
 const subjects = [
   "General inquiry",
@@ -60,29 +61,42 @@ function ErrorText({ message }: { message?: string }) {
 function ContactForm() {
   const [values, setValues] = useState<FormValues>(emptyValues);
   const [errors, setErrors] = useState<Errors>({});
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [serverError, setServerError] = useState("");
   const [subjectOpen, setSubjectOpen] = useState(false);
 
   function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = event.target;
     setValues((prev) => ({ ...prev, [name]: value }));
-    setSubmitted(false);
+    setStatus("idle");
   }
 
   function handleSubject(subject: string) {
     setValues((prev) => ({ ...prev, subject }));
     setSubjectOpen(false);
-    setSubmitted(false);
+    setStatus("idle");
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const nextErrors = validate(values);
     setErrors(nextErrors);
-    if (Object.keys(nextErrors).length === 0) {
-      // Placeholder: connect to a server action or email service later.
-      setSubmitted(true);
+    if (Object.keys(nextErrors).length > 0) return;
+
+    setStatus("sending");
+    setServerError("");
+
+    // Named inputs are read from the form, including the hidden honeypot field.
+    const formData = new FormData(event.currentTarget);
+    formData.set("subject", values.subject);
+
+    const result = await sendContactMessage(formData);
+    if (result.ok) {
+      setStatus("success");
       setValues(emptyValues);
+    } else {
+      setStatus("error");
+      setServerError(result.error);
     }
   }
 
@@ -92,6 +106,14 @@ function ContactForm() {
       noValidate
       className="flex flex-col gap-5 rounded-xl border p-4 sm:p-6 md:p-8"
     >
+      {/* Honeypot: hidden from people, filled in by bots */}
+      <div className="hidden" aria-hidden="true">
+        <label>
+          Website
+          <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+        </label>
+      </div>
+
       <div className="flex flex-col gap-1">
         <h3 className="font-heading text-lg font-semibold tracking-tight sm:text-xl">Send a message</h3>
         <p className="text-sm text-muted-foreground">
@@ -215,12 +237,19 @@ function ContactForm() {
       </div>
 
       <div className="flex items-center gap-4">
-        <Button type="submit" size="lg" className="w-full px-8 sm:w-auto">
-          Send message
+        <Button
+          type="submit"
+          size="lg"
+          disabled={status === "sending"}
+          className="w-full px-8 sm:w-auto"
+        >
+          {status === "sending" ? "Sending..." : "Send message"}
+          {status !== "sending" && <Send className="size-4" aria-hidden="true" />}
         </Button>
-        {submitted && (
+        {status === "success" && (
           <p className="text-sm text-muted-foreground">Thanks! Your message was sent.</p>
         )}
+        {status === "error" && <p className="text-sm text-destructive">{serverError}</p>}
       </div>
     </form>
   );
@@ -250,14 +279,14 @@ export default function Contact() {
               <CardContent className="flex flex-col gap-4 px-4 text-sm sm:px-6">
                 <div className="flex items-center gap-3">
                   <Mail className="size-5 shrink-0 text-muted-foreground" aria-label="Email" />
-                  <a href={`mailto:${site.email}`} className="text-muted-foreground hover:text-foreground">
+                  <a href={`mailto:${site.email}`} className="text-muted-foreground hover:text-foreground hover:underline underline-offset-4 focus-visible:text-foreground focus-visible:underline focus-visible:outline-none">
                     {site.email}
                   </a>
                 </div>
 
                 <div className="flex items-center gap-3">
                   <Phone className="size-5 shrink-0 text-muted-foreground" aria-label="Phone" />
-                  <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="text-muted-foreground hover:text-foreground">
+                  <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="text-muted-foreground hover:text-foreground hover:underline underline-offset-4 focus-visible:text-foreground focus-visible:underline focus-visible:outline-none">
                     {site.phone}
                   </a>
                 </div>
@@ -284,7 +313,7 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub profile"
-                  className="flex items-center gap-3 text-muted-foreground hover:text-foreground"
+                  className="flex items-center gap-3 text-muted-foreground hover:text-foreground hover:underline underline-offset-4 focus-visible:text-foreground focus-visible:underline focus-visible:outline-none"
                 >
                   <GithubIcon className="size-5 shrink-0" />
                   <span>redsaucce</span>
@@ -295,7 +324,7 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn profile"
-                  className="flex items-center gap-3 text-muted-foreground hover:text-foreground"
+                  className="flex items-center gap-3 text-muted-foreground hover:text-foreground hover:underline underline-offset-4 focus-visible:text-foreground focus-visible:underline focus-visible:outline-none"
                 >
                   <LinkedinIcon className="size-5 shrink-0" />
                   <span>Drew Benett Pereda</span>
@@ -306,7 +335,7 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram profile"
-                  className="flex items-center gap-3 text-muted-foreground hover:text-foreground"
+                  className="flex items-center gap-3 text-muted-foreground hover:text-foreground hover:underline underline-offset-4 focus-visible:text-foreground focus-visible:underline focus-visible:outline-none"
                 >
                   <InstagramIcon gradientId="contact-instagram-gradient" className="size-5 shrink-0" />
                   <span>Red Pereda</span>
@@ -317,7 +346,7 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook profile"
-                  className="flex items-center gap-3 text-muted-foreground hover:text-foreground"
+                  className="flex items-center gap-3 text-muted-foreground hover:text-foreground hover:underline underline-offset-4 focus-visible:text-foreground focus-visible:underline focus-visible:outline-none"
                 >
                   <FacebookIcon className="size-5 shrink-0" />
                   <span>Red Pereda</span>
